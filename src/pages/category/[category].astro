@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ToolGrid from '../../components/ToolGrid.astro';
+import SearchBar from '../../components/SearchBar.astro';
+import CategoryFilter from '../../components/CategoryFilter.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const tools = await getCollection('tools');
+  const categories = [...new Set(tools.map(tool => tool.data.category))];
+  
+  return categories.map(category => ({
+    params: { category },
+    props: { 
+      tools: tools.filter(tool => tool.data.category === category),
+      category 
+    }
+  }));
+}
+
+const { tools, category } = Astro.props;
+const allTools = await getCollection('tools');
+const categories = [
+  { name: 'Chat Tools', slug: 'chat', count: allTools.filter(t => t.data.category === 'chat').length },
+  { name: 'Code Assistants', slug: 'code-assistant', count: allTools.filter(t => t.data.category === 'code-assistant').length },
+  { name: 'Image Generation', slug: 'image-generation', count: allTools.filter(t => t.data.category === 'image-generation').length },
+  { name: 'Agent Builders', slug: 'agent-builder', count: allTools.filter(t => t.data.category === 'agent-builder').length },
+  { name: 'Writing Tools', slug: 'writing', count: allTools.filter(t => t.data.category === 'writing').length },
+  { name: 'Voice & Audio', slug: 'voice', count: allTools.filter(t => t.data.category === 'voice').length },
+  { name: 'Video Tools', slug: 'video', count: allTools.filter(t => t.data.category === 'video').length },
+  { name: 'Analytics', slug: 'analytics', count: allTools.filter(t => t.data.category === 'analytics').length },
+].filter(cat => cat.count > 0);
+
+const categoryName = categories.find(cat => cat.slug === category)?.name || category;
+---
+
+<BaseLayout title={`${categoryName} - AI Tools Directory`}>
+  <div class="bg-gray-50 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-gray-900">{categoryName}</h1>
+        <p class="mt-2 text-gray-600">Browse {tools.length} tools in the {categoryName.toLowerCase()} category</p>
+      </div>
+      
+      <div class="max-w-2xl mx-auto mb-8">
+        <SearchBar placeholder={`Search ${categoryName.toLowerCase()}...`} />
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <div class="lg:col-span-1">
+        <CategoryFilter categories={categories} activeCategory={category} />
+      </div>
+      
+      <div class="lg:col-span-3">
+        <div class="flex justify-between items-center mb-6">
+          <p class="text-gray-600">Showing {tools.length} tools</p>
+          <select class="border border-gray-300 rounded-md px-3 py-2 text-sm">
+            <option value="rating">Sort by Rating</option>
+            <option value="name">Sort by Name</option>
+            <option value="pricing">Sort by Pricing</option>
+          </select>
+        </div>
+        
+        <ToolGrid tools={tools} />
+      </div>
+    </div>
+  </div>
+</BaseLayout>

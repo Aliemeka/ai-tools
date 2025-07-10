@@ -1,0 +1,36 @@
+---
+import ToolCard from './ToolCard.astro';
+
+export interface Props {
+  tools: Array<{
+    slug: string;
+    data: {
+      title: string;
+      description: string;
+      category: string;
+      pricing: string;
+      source: string;
+      logo: string;
+      rating: number;
+      tags: string[];
+      website: string;
+    };
+  }>;
+}
+
+const { tools } = Astro.props;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {tools.map(tool => (
+    <ToolCard tool={tool} />
+  ))}
+</div>
+
+{tools.length === 0 && (
+  <div class="text-center py-12">
+    <div class="text-gray-400 text-6xl mb-4">🔍</div>
+    <h3 class="text-lg font-medium text-gray-900 mb-2">No tools found</h3>
+    <p class="text-gray-600">Try adjusting your search or filters</p>
+  </div>
+)}

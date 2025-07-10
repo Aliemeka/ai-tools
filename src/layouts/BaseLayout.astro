@@ -1,0 +1,88 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Discover and explore the best AI tools for professionals",
+} = Astro.props;
+// const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>{title}</title>
+    <meta name='description' content={description} />
+    <!-- <link rel="canonical" href={canonicalURL}> -->
+
+    <!-- Open Graph / Facebook -->
+    <meta property='og:type' content='website' />
+    <!-- <meta property="og:url" content={canonicalURL}> -->
+    <meta property='og:title' content={title} />
+    <meta property='og:description' content={description} />
+    <meta property='og:image' content='/og-image.jpg' />
+
+    <!-- Twitter -->
+    <meta property='twitter:card' content='summary_large_image' />
+    <!-- <meta property="twitter:url" content={canonicalURL}> -->
+    <meta property='twitter:title' content={title} />
+    <meta property='twitter:description' content={description} />
+    <meta property='twitter:image' content='/og-image.jpg' />
+
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <link rel='stylesheet' href='/src/styles/global.css' />
+
+    <!-- JSON-LD Schema -->
+    <script type='application/ld+json'>
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "AI Tools Directory",
+        "description": "A comprehensive directory of AI tools for professionals",
+        "url": "https://ai-tools-directory.com",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://ai-tools-directory.com/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+  </head>
+  <body class='bg-gray-50 min-h-screen'>
+    <nav class='bg-white shadow-sm border-b'>
+      <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+        <div class='flex justify-between items-center py-4'>
+          <div class='flex items-center'>
+            <a href='/' class='text-2xl font-bold text-gray-900'
+              >AI Tools Directory</a
+            >
+          </div>
+          <div class='flex space-x-4'>
+            <a href='/' class='text-gray-700 hover:text-gray-900'>Home</a>
+            <a href='/tools' class='text-gray-700 hover:text-gray-900'>Tools</a>
+            <a href='/categories' class='text-gray-700 hover:text-gray-900'
+              >Categories</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class='bg-gray-800 text-white mt-16'>
+      <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
+        <div class='text-center'>
+          <p>&copy; 2024 AI Tools Directory. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
