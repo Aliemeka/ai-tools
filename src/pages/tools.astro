@@ -1,53 +1,91 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import ToolGrid from '../components/ToolGrid.astro';
-import SearchBar from '../components/SearchBar.astro';
-import CategoryFilter from '../components/CategoryFilter.astro';
-import { getCollection } from 'astro:content';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ToolGrid from "../components/ToolGrid.astro";
+import SearchBar from "../components/SearchBar.astro";
+import CategoryFilter from "../components/CategoryFilter.astro";
+import { getCollection } from "astro:content";
 
-const tools = await getCollection('tools');
+const tools = await getCollection("tools");
 const categories = [
-  { name: 'Chat Tools', slug: 'chat', count: tools.filter(t => t.data.category === 'chat').length },
-  { name: 'Code Assistants', slug: 'code-assistant', count: tools.filter(t => t.data.category === 'code-assistant').length },
-  { name: 'Image Generation', slug: 'image-generation', count: tools.filter(t => t.data.category === 'image-generation').length },
-  { name: 'Agent Builders', slug: 'agent-builder', count: tools.filter(t => t.data.category === 'agent-builder').length },
-  { name: 'Writing Tools', slug: 'writing', count: tools.filter(t => t.data.category === 'writing').length },
-  { name: 'Voice & Audio', slug: 'voice', count: tools.filter(t => t.data.category === 'voice').length },
-  { name: 'Video Tools', slug: 'video', count: tools.filter(t => t.data.category === 'video').length },
-  { name: 'Analytics', slug: 'analytics', count: tools.filter(t => t.data.category === 'analytics').length },
-].filter(cat => cat.count > 0);
+  {
+    name: "Chat Tools",
+    slug: "chat",
+    count: tools.filter((t) => t.data.category === "chat").length,
+  },
+  {
+    name: "Code Assistants",
+    slug: "code-assistant",
+    count: tools.filter((t) => t.data.category === "code-assistant").length,
+  },
+  {
+    name: "Image Generation",
+    slug: "image-generation",
+    count: tools.filter((t) => t.data.category === "image-generation").length,
+  },
+  {
+    name: "Agent Builders",
+    slug: "agent-builder",
+    count: tools.filter((t) => t.data.category === "agent-builder").length,
+  },
+  {
+    name: "Writing Tools",
+    slug: "writing",
+    count: tools.filter((t) => t.data.category === "writing").length,
+  },
+  {
+    name: "Voice & Audio",
+    slug: "voice",
+    count: tools.filter((t) => t.data.category === "voice").length,
+  },
+  {
+    name: "Video Tools",
+    slug: "video",
+    count: tools.filter((t) => t.data.category === "video").length,
+  },
+  {
+    name: "Analytics",
+    slug: "analytics",
+    count: tools.filter((t) => t.data.category === "analytics").length,
+  },
+].filter((cat) => cat.count > 0);
 ---
 
-<BaseLayout title="All AI Tools - AI Tools Directory">
-  <div class="bg-gray-50 py-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-8">
-        <h1 class="text-3xl font-bold text-gray-900">All AI Tools</h1>
-        <p class="mt-2 text-gray-600">Browse our complete collection of {tools.length} AI tools</p>
+<BaseLayout title='All AI Tools - AI Tools Directory'>
+  <div class='bg-slate-50 py-12'>
+    <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+      <div class='text-center mb-12'>
+        <h1 class='text-4xl lg:text-6xl font-bold text-slate-900 mb-4'>
+          All AI Tools
+        </h1>
+        <p class='text-xl text-slate-600 max-w-2xl mx-auto'>
+          Browse our complete collection of {tools.length} AI tools
+        </p>
       </div>
-      
-      <div class="max-w-2xl mx-auto mb-8">
-        <SearchBar placeholder="Search tools by name, category, or features..." />
+
+      <div class='max-w-2xl mx-auto mb-12'>
+        <SearchBar
+          placeholder='Search tools by name, category, or features...'
+        />
       </div>
     </div>
   </div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-      <div class="lg:col-span-1">
+  <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
+    <div class='grid grid-cols-1 lg:grid-cols-4 gap-10'>
+      <div class='lg:col-span-1'>
         <CategoryFilter categories={categories} />
       </div>
-      
-      <div class="lg:col-span-3">
-        <div class="flex justify-between items-center mb-6">
-          <p class="text-gray-600">Showing {tools.length} tools</p>
-          <select class="border border-gray-300 rounded-md px-3 py-2 text-sm">
-            <option value="rating">Sort by Rating</option>
-            <option value="name">Sort by Name</option>
-            <option value="category">Sort by Category</option>
+
+      <div class='lg:col-span-3'>
+        <div class='flex justify-between items-center mb-8'>
+          <p class='text-slate-600 font-medium'>Showing {tools.length} tools</p>
+          <select class='border border-slate-300 rounded-lg px-4 py-2.5 text-sm bg-white shadow-sm hover:border-fuchsia-300 focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-200 transition-colors'>
+            <option value='rating'>Sort by Rating</option>
+            <option value='name'>Sort by Name</option>
+            <option value='category'>Sort by Category</option>
           </select>
         </div>
-        
+
         <ToolGrid tools={tools} />
       </div>
     </div>

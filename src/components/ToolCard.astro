@@ -19,59 +19,75 @@ export interface Props {
 const { tool } = Astro.props;
 ---
 
-<div class="tool-card group">
-  <div class="flex items-start justify-between mb-4">
-    <div class="flex items-center space-x-3">
-      <img src={tool.data.logo} alt={tool.data.title} class="w-12 h-12 rounded-lg object-cover">
+<div class='tool-card group flex flex-col'>
+  <div class='flex items-start justify-between mb-4'>
+    <div class='flex items-center space-x-3'>
+      <img
+        src={tool.data.logo}
+        alt={tool.data.title}
+        class='w-12 h-12 rounded-lg object-cover'
+      />
       <div>
-        <h3 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+        <h3
+          class='text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors'
+        >
           {tool.data.title}
         </h3>
-        <div class="flex items-center space-x-2 mt-1">
-          <span class="text-yellow-500">⭐</span>
-          <span class="text-sm text-gray-600">{tool.data.rating}</span>
+        <div class='flex items-center space-x-2 mt-1'>
+          <span class='text-yellow-500'>⭐</span>
+          <span class='text-sm text-gray-600'>{tool.data.rating}</span>
         </div>
       </div>
     </div>
   </div>
 
-  <p class="text-gray-600 text-sm mb-4 line-clamp-2">{tool.data.description}</p>
+  <p class='text-gray-600 text-sm mb-4 line-clamp-2'>{tool.data.description}</p>
 
-  <div class="flex flex-wrap gap-2 mb-4">
-    <span class={`badge ${tool.data.pricing === 'free' ? 'badge-free' : tool.data.pricing === 'freemium' ? 'badge-freemium' : 'badge-paid'}`}>
+  <div class='flex flex-wrap gap-2 mb-4'>
+    <span
+      class={`badge ${tool.data.pricing === "free" ? "badge-free" : tool.data.pricing === "freemium" ? "badge-freemium" : "badge-paid"}`}
+    >
       {tool.data.pricing}
     </span>
-    <span class={`badge ${tool.data.source === 'open-source' ? 'badge-open-source' : 'badge-closed-source'}`}>
+    <span
+      class={`badge ${tool.data.source === "open-source" ? "badge-open-source" : "badge-closed-source"}`}
+    >
       {tool.data.source}
     </span>
-    <span class="badge bg-gray-100 text-gray-800">{tool.data.category}</span>
+    <span class='badge bg-gray-100 text-gray-800'>{tool.data.category}</span>
   </div>
 
-  <div class="flex flex-wrap gap-1 mb-4">
-    {tool.data.tags.slice(0, 3).map(tag => (
-      <span class="px-2 py-1 bg-blue-50 text-blue-700 rounded text-xs">
-        #{tag}
-      </span>
-    ))}
-    {tool.data.tags.length > 3 && (
-      <span class="px-2 py-1 bg-gray-50 text-gray-600 rounded text-xs">
-        +{tool.data.tags.length - 3} more
-      </span>
-    )}
+  <div class='flex flex-wrap gap-1 mb-4'>
+    {
+      tool.data.tags
+        .slice(0, 3)
+        .map((tag) => (
+          <span class='px-2 py-1 bg-blue-50 text-blue-700 rounded text-xs'>
+            #{tag}
+          </span>
+        ))
+    }
+    {
+      tool.data.tags.length > 3 && (
+        <span class='px-2 py-1 bg-gray-50 text-gray-600 rounded text-xs'>
+          +{tool.data.tags.length - 3} more
+        </span>
+      )
+    }
   </div>
 
-  <div class="flex justify-between items-center">
-    <a 
+  <div class='flex justify-between items-center mt-auto'>
+    <a
       href={`/tools/${tool.slug}`}
-      class="text-blue-600 hover:text-blue-800 font-medium text-sm"
+      class='text-blue-600 hover:text-blue-800 font-medium text-sm'
     >
       Learn more →
     </a>
-    <a 
+    <a
       href={tool.data.website}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="text-gray-500 hover:text-gray-700 text-sm"
+      target='_blank'
+      rel='noopener noreferrer'
+      class='text-gray-500 hover:text-gray-700 text-sm'
     >
       Visit site
     </a>

@@ -21,40 +21,40 @@ const featuredTools = tools.slice(0, 6);
 ---
 
 <BaseLayout title="AI Tools Directory - Discover the Best AI Tools for Professionals">
-  <div class="bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
+  <div class="bg-gradient-to-br from-fuchsia-50 to-pink-100 py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-4xl font-bold text-gray-900 sm:text-5xl md:text-6xl">
-        Discover the Best <span class="text-blue-600">AI Tools</span>
+      <h1 class="text-5xl font-bold text-slate-900 sm:text-6xl md:text-7xl mb-6">
+        Discover the Best <span class="text-fuchsia-600">AI Tools</span>
       </h1>
-      <p class="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
+      <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-10">
         A comprehensive directory of AI tools for professionals. Find the perfect AI solution for your workflow.
       </p>
-      <div class="mt-8 max-w-2xl mx-auto">
+      <div class="max-w-2xl mx-auto">
         <SearchBar placeholder="Search over 10+ AI tools..." />
       </div>
     </div>
   </div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
       <div class="lg:col-span-1">
         <CategoryFilter categories={categories} />
       </div>
       
       <div class="lg:col-span-3">
-        <div class="mb-8">
-          <h2 class="text-2xl font-bold text-gray-900 mb-2">Featured Tools</h2>
-          <p class="text-gray-600">Popular AI tools used by professionals worldwide</p>
+        <div class="mb-10">
+          <h2 class="text-3xl font-bold text-slate-900 mb-3">Featured Tools</h2>
+          <p class="text-slate-600 text-lg">Popular AI tools used by professionals worldwide</p>
         </div>
         <ToolGrid tools={featuredTools} />
         
-        <div class="mt-12 text-center">
+        <div class="mt-16 text-center">
           <a
             href="/tools"
-            class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+            class="inline-flex items-center px-8 py-4 bg-fuchsia-600 text-white font-semibold rounded-xl hover:bg-fuchsia-700 transition-colors shadow-lg hover:shadow-xl"
           >
             View All Tools
-            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
           </a>
@@ -63,23 +63,23 @@ const featuredTools = tools.slice(0, 6);
     </div>
   </div>
 
-  <div class="bg-gray-50 py-16">
+  <div class="bg-slate-50 py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900">Browse by Category</h2>
-        <p class="mt-4 text-gray-600">Find tools by their primary use case</p>
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-slate-900 mb-4">Browse by Category</h2>
+        <p class="text-xl text-slate-600">Find tools by their primary use case</p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {categories.map(category => (
           <a
             href={`/category/${category.slug}`}
-            class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow group"
+            class="bg-white rounded-xl shadow-sm border border-slate-200 p-8 hover:shadow-lg hover:border-fuchsia-200 transition-all duration-300 group"
           >
-            <h3 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+            <h3 class="text-xl font-semibold text-slate-900 group-hover:text-fuchsia-600 transition-colors mb-2">
               {category.name}
             </h3>
-            <p class="text-sm text-gray-600 mt-1">{category.count} tools</p>
+            <p class="text-slate-600 font-medium">{category.count} tools</p>
           </a>
         ))}
       </div>

@@ -5,7 +5,7 @@ const toolsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    category: z.enum(['chat', 'agent-builder', 'image-generation', 'code-assistant', 'writing', 'analytics', 'voice', 'video']),
+    category: z.enum(['chat', 'agent-builder', 'image-generation', 'code-assistant', 'writing', 'analytics', 'voice', 'video', 'search', 'productivity', 'development']),
     subcategory: z.string(),
     pricing: z.enum(['free', 'freemium', 'paid']),
     source: z.enum(['open-source', 'closed-source']),

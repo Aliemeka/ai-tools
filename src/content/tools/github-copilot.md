@@ -19,7 +19,7 @@ pricing_details:
 api_available: false
 mobile_app: false
 integrations: ["VS Code", "JetBrains IDEs", "Neovim", "Visual Studio"]
-last_updated: "2024-12-15"
+last_updated: "2025-07-10"
 rating: 4.6
 user_count: "5M+"
 ---

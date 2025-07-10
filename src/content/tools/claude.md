@@ -20,7 +20,7 @@ pricing_details:
 api_available: true
 mobile_app: true
 integrations: ["API", "Slack", "Claude for Work"]
-last_updated: "2024-12-15"
+last_updated: "2025-07-10"
 rating: 4.7
 user_count: "10M+"
 ---

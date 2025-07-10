@@ -20,7 +20,7 @@ pricing_details:
 api_available: true
 mobile_app: false
 integrations: ["Slack", "Google Sheets", "Airtable", "Webhook", "OpenAI"]
-last_updated: "2024-12-15"
+last_updated: "2025-07-10"
 rating: 4.5
 user_count: "500K+"
 ---

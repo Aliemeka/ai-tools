@@ -19,7 +19,7 @@ pricing_details:
 api_available: true
 mobile_app: true
 integrations: ["Grammarly", "Surfer SEO", "Zapier", "Chrome Extension"]
-last_updated: "2024-12-15"
+last_updated: "2025-07-10"
 rating: 4.4
 user_count: "100K+"
 ---
