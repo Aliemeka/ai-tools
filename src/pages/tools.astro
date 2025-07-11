@@ -5,7 +5,18 @@ import SearchBar from "../components/SearchBar.astro";
 import CategoryFilter from "../components/CategoryFilter.astro";
 import { getCollection } from "astro:content";
 
-const tools = await getCollection("tools");
+const allTools = await getCollection("tools");
+
+// Get URL query parameters
+const url = Astro.url;
+const searchParams = url.searchParams;
+const pricingFilters = searchParams.getAll("pricing");
+const sourceFilters = searchParams.getAll("source");
+const sortBy = Astro.url.searchParams.get("sort") || "ratings";
+
+// Filter tools based on query parameters
+let tools = allTools;
+
 const categories = [
   {
     name: "Chat Tools",
@@ -73,16 +84,29 @@ const categories = [
   <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
     <div class='grid grid-cols-1 lg:grid-cols-4 gap-10'>
       <div class='lg:col-span-1'>
-        <CategoryFilter categories={categories} />
+        <CategoryFilter
+          categories={categories}
+          pricingFilters={pricingFilters}
+          sourceFilters={sourceFilters}
+        />
       </div>
 
       <div class='lg:col-span-3'>
         <div class='flex justify-between items-center mb-8'>
           <p class='text-slate-600 font-medium'>Showing {tools.length} tools</p>
-          <select class='border border-slate-300 rounded-lg px-4 py-2.5 text-sm bg-white shadow-sm hover:border-fuchsia-300 focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-200 transition-colors'>
-            <option value='rating'>Sort by Rating</option>
-            <option value='name'>Sort by Name</option>
-            <option value='category'>Sort by Category</option>
+          <select
+            id='sort-select'
+            class='border border-slate-300 rounded-lg px-4 py-2.5 text-sm bg-white shadow-sm hover:border-fuchsia-300 focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-200 transition-colors'
+          >
+            <option value='rating' selected={sortBy === "rating"}
+              >Sort by Rating</option
+            >
+            <option value='name' selected={sortBy === "name"}
+              >Sort by Name</option
+            >
+            <option value='category' selected={sortBy === "category"}
+              >Sort by Category</option
+            >
           </select>
         </div>
 
@@ -91,3 +115,29 @@ const categories = [
     </div>
   </div>
 </BaseLayout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const sortSelect = document.getElementById(
+      "sort-select"
+    ) as HTMLSelectElement;
+
+    if (sortSelect) {
+      sortSelect.addEventListener("change", () => {
+        const sortValue = sortSelect.value;
+        const url = new URL(window.location.href);
+        const params = new URLSearchParams(url.search);
+
+        if (sortValue === "rating") {
+          params.delete("sort");
+        } else {
+          params.set("sort", sortValue);
+        }
+
+        const newUrl =
+          url.pathname + (params.toString() ? "?" + params.toString() : "");
+        window.location.href = newUrl;
+      });
+    }
+  });
+</script>

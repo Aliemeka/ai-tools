@@ -7,44 +7,60 @@ export interface Props {
 const { placeholder = "Search AI tools...", value = "" } = Astro.props;
 ---
 
-<div class="relative">
-  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-    <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+<div class='relative'>
+  <div
+    class='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'
+  >
+    <svg
+      class='h-5 w-5 text-gray-400'
+      fill='none'
+      stroke='currentColor'
+      viewBox='0 0 24 24'
+    >
+      <path
+        stroke-linecap='round'
+        stroke-linejoin='round'
+        stroke-width='2'
+        d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'></path>
     </svg>
   </div>
   <input
-    type="search"
-    name="search"
-    id="search"
-    class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+    type='search'
+    name='search'
+    id='search'
+    class='block w-full pl-10 pr-3 py-3 focus:bg-white border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-transparent'
     placeholder={placeholder}
     value={value}
-  >
+  />
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById('search') as HTMLInputElement;
-    const toolCards = document.querySelectorAll('.tool-card');
-    
+  document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("search") as HTMLInputElement;
+    const toolCards = document.querySelectorAll(".tool-card");
+
     if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
+      searchInput.addEventListener("input", (e) => {
         const searchTerm = (e.target as HTMLInputElement).value.toLowerCase();
-        
-        toolCards.forEach(card => {
-          const title = card.querySelector('h3')?.textContent?.toLowerCase() || '';
-          const description = card.querySelector('p')?.textContent?.toLowerCase() || '';
-          const tags = Array.from(card.querySelectorAll('.bg-blue-50')).map(tag => tag.textContent?.toLowerCase() || '');
-          
-          const matches = title.includes(searchTerm) || 
-                         description.includes(searchTerm) || 
-                         tags.some(tag => tag.includes(searchTerm));
-          
+
+        toolCards.forEach((card) => {
+          const title =
+            card.querySelector("h3")?.textContent?.toLowerCase() || "";
+          const description =
+            card.querySelector("p")?.textContent?.toLowerCase() || "";
+          const tags = Array.from(card.querySelectorAll(".bg-fuchsia-50")).map(
+            (tag) => tag.textContent?.toLowerCase() || ""
+          );
+
+          const matches =
+            title.includes(searchTerm) ||
+            description.includes(searchTerm) ||
+            tags.some((tag) => tag.includes(searchTerm));
+
           if (matches) {
-            (card as HTMLElement).style.display = 'block';
+            (card as HTMLElement).style.display = "block";
           } else {
-            (card as HTMLElement).style.display = 'none';
+            (card as HTMLElement).style.display = "none";
           }
         });
       });

@@ -1,5 +1,5 @@
 ---
-import ToolCard from './ToolCard.astro';
+import ToolCard from "./ToolCard.astro";
 
 export interface Props {
   tools: Array<{
@@ -18,19 +18,53 @@ export interface Props {
   }>;
 }
 
-const { tools } = Astro.props;
+const { tools: allTools } = Astro.props;
+
+const url = Astro.url;
+const searchParams = url.searchParams;
+const pricingFilters = searchParams.getAll("pricing");
+const sourceFilters = searchParams.getAll("source");
+const sortBy = Astro.url.searchParams.get("sort") || "ratings";
+
+// Filter tools based on query parameters
+let tools = allTools;
+
+// Filter by pricing
+if (pricingFilters.length > 0) {
+  tools = tools.filter((tool) => pricingFilters.includes(tool.data.pricing));
+}
+
+// Filter by source
+if (sourceFilters.length > 0) {
+  tools = tools.filter((tool) => sourceFilters.includes(tool.data.source));
+}
+// Sort tools
+switch (sortBy) {
+  case "name":
+    tools = tools.sort((a, b) => a.data.title.localeCompare(b.data.title));
+    break;
+  case "category":
+    tools = tools.sort((a, b) =>
+      a.data.category.localeCompare(b.data.category)
+    );
+    break;
+  case "rating":
+  default:
+    tools = tools.sort((a, b) => b.data.rating - a.data.rating);
+    break;
+}
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-  {tools.map(tool => (
-    <ToolCard tool={tool} />
-  ))}
+<div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+  {tools.map((tool) => <ToolCard tool={tool} />)}
 </div>
 
-{tools.length === 0 && (
-  <div class="text-center py-12">
-    <div class="text-gray-400 text-6xl mb-4">🔍</div>
-    <h3 class="text-lg font-medium text-gray-900 mb-2">No tools found</h3>
-    <p class="text-gray-600">Try adjusting your search or filters</p>
-  </div>
-)}
+{
+  tools.length === 0 && (
+    <div class='text-center py-12'>
+      <div class='text-gray-400 text-6xl mb-4'>🔍</div>
+      <h3 class='text-lg font-medium text-gray-900 mb-2'>No tools found</h3>
+      <p class='text-gray-600'>Try adjusting your search or filters</p>
+    </div>
+  )
+}

@@ -1,15 +1,15 @@
 ---
-import ToolLayout from '../../layouts/ToolLayout.astro';
-import { getCollection } from 'astro:content';
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const tools = await getCollection('tools');
-  return tools.map(tool => ({
+  const tools = await getCollection("tools");
+  return tools.map((tool) => ({
     params: { slug: tool.slug },
-    props: { tool }
+    props: { tool },
   }));
 }
-
+export const prerender = true;
 const { tool } = Astro.props;
 const { Content } = await tool.render();
 ---

@@ -25,11 +25,11 @@ const { tool } = Astro.props;
       <img
         src={tool.data.logo}
         alt={tool.data.title}
-        class='w-12 h-12 rounded-lg object-cover'
+        class='w-12 h-12 rounded-lg object-contain object-center'
       />
       <div>
         <h3
-          class='text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors'
+          class='text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors !leading-snug'
         >
           {tool.data.title}
         </h3>

@@ -6,70 +6,151 @@ export interface Props {
     slug: string;
   }>;
   activeCategory?: string;
+  pricingFilters?: string[];
+  sourceFilters?: string[];
 }
 
-const { categories, activeCategory } = Astro.props;
+const {
+  categories,
+  activeCategory,
+  pricingFilters = [],
+  sourceFilters = [],
+} = Astro.props;
 ---
 
-<div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-  <h3 class="text-lg font-semibold text-gray-900 mb-4">Categories</h3>
-  <div class="space-y-2">
+<div class='bg-white rounded-xl shadow-sm border border-slate-200 p-6'>
+  <h3 class='text-lg font-semibold text-slate-900 mb-4'>Categories</h3>
+  <div class='space-y-2'>
     <a
-      href="/tools"
+      href='/tools'
       class={`block px-3 py-2 rounded-md text-sm font-medium transition-colors ${
         !activeCategory
-          ? 'bg-blue-100 text-blue-700'
-          : 'text-gray-700 hover:bg-gray-100'
+          ? "bg-fuchsia-100 text-fuchsia-700"
+          : "text-slate-700 hover:bg-slate-100"
       }`}
     >
       All Tools
     </a>
-    {categories.map(category => (
-      <a
-        href={`/category/${category.slug}`}
-        class={`block px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-          activeCategory === category.slug
-            ? 'bg-blue-100 text-blue-700'
-            : 'text-gray-700 hover:bg-gray-100'
-        }`}
-      >
-        <div class="flex justify-between items-center">
-          <span>{category.name}</span>
-          <span class="text-xs text-gray-500">{category.count}</span>
-        </div>
-      </a>
-    ))}
+    {
+      categories.map((category) => (
+        <a
+          href={`/category/${category.slug}`}
+          class={`block px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+            activeCategory === category.slug
+              ? "bg-fuchsia-100 text-fuchsia-700"
+              : "text-slate-700 hover:bg-slate-100"
+          }`}
+        >
+          <div class='flex justify-between items-center'>
+            <span>{category.name}</span>
+            <span class='text-xs text-slate-500'>{category.count}</span>
+          </div>
+        </a>
+      ))
+    }
   </div>
 </div>
 
-<div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mt-6">
-  <h3 class="text-lg font-semibold text-gray-900 mb-4">Pricing</h3>
-  <div class="space-y-2">
-    <label class="flex items-center">
-      <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" name="pricing" value="free">
-      <span class="ml-2 text-sm text-gray-700">Free</span>
+<div class='bg-white rounded-xl shadow-sm border border-slate-200 p-6 mt-6'>
+  <h3 class='text-lg font-semibold text-slate-900 mb-4'>Pricing</h3>
+  <div class='space-y-2'>
+    <label class='flex items-center cursor-pointer'>
+      <input
+        type='checkbox'
+        class='rounded border-slate-300 text-fuchsia-600 focus:ring-fuchsia-500'
+        name='pricing'
+        value='free'
+        checked={pricingFilters.includes("free") ? "checked" : ""}
+      />
+      <span class='ml-2 text-sm text-slate-700'>Free</span>
     </label>
-    <label class="flex items-center">
-      <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" name="pricing" value="freemium">
-      <span class="ml-2 text-sm text-gray-700">Freemium</span>
+    <label class='flex items-center cursor-pointer'>
+      <input
+        type='checkbox'
+        class='rounded border-slate-300 text-fuchsia-600 focus:ring-fuchsia-500'
+        name='pricing'
+        value='freemium'
+        checked={pricingFilters.includes("freemium") ? "checked" : ""}
+      />
+      <span class='ml-2 text-sm text-slate-700'>Freemium</span>
     </label>
-    <label class="flex items-center">
-      <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" name="pricing" value="paid">
-      <span class="ml-2 text-sm text-gray-700">Paid</span>
+    <label class='flex items-center cursor-pointer'>
+      <input
+        type='checkbox'
+        class='rounded border-slate-300 text-fuchsia-600 focus:ring-fuchsia-500'
+        name='pricing'
+        value='paid'
+        checked={pricingFilters.includes("paid") ? "checked" : ""}
+      />
+      <span class='ml-2 text-sm text-slate-700'>Paid</span>
     </label>
   </div>
 </div>
 
-<div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mt-6">
-  <h3 class="text-lg font-semibold text-gray-900 mb-4">Source</h3>
-  <div class="space-y-2">
-    <label class="flex items-center">
-      <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" name="source" value="open-source">
-      <span class="ml-2 text-sm text-gray-700">Open Source</span>
+<div class='bg-white rounded-xl shadow-sm border border-slate-200 p-6 mt-6'>
+  <h3 class='text-lg font-semibold text-slate-900 mb-4'>Source</h3>
+  <div class='space-y-2'>
+    <label class='flex items-center cursor-pointer'>
+      <input
+        type='checkbox'
+        class='rounded border-slate-300 text-fuchsia-600 focus:ring-fuchsia-500'
+        name='source'
+        value='open-source'
+        checked={sourceFilters.includes("open-source") ? "checked" : ""}
+      />
+      <span class='ml-2 text-sm text-slate-700'>Open Source</span>
     </label>
-    <label class="flex items-center">
-      <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" name="source" value="closed-source">
-      <span class="ml-2 text-sm text-gray-700">Closed Source</span>
+    <label class='flex items-center cursor-pointer'>
+      <input
+        type='checkbox'
+        class='rounded border-slate-300 text-fuchsia-600 focus:ring-fuchsia-500'
+        name='source'
+        value='closed-source'
+        checked={sourceFilters.includes("closed-source")}
+      />
+      <span class='ml-2 text-sm text-slate-700'>Closed Source</span>
     </label>
   </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+    checkboxes.forEach((checkbox) => {
+      checkbox.addEventListener("change", () => {
+        updateFilters();
+      });
+    });
+
+    function updateFilters() {
+      const url = new URL(window.location.href);
+      const params = new URLSearchParams(url.search);
+
+      // Clear existing filter params
+      params.delete("pricing");
+      params.delete("source");
+
+      // Add checked pricing filters
+      const pricingCheckboxes = document.querySelectorAll(
+        'input[name="pricing"]:checked'
+      );
+      pricingCheckboxes.forEach((checkbox) => {
+        params.append("pricing", (checkbox as HTMLInputElement).value);
+      });
+
+      // Add checked source filters
+      const sourceCheckboxes = document.querySelectorAll(
+        'input[name="source"]:checked'
+      );
+      sourceCheckboxes.forEach((checkbox) => {
+        params.append("source", (checkbox as HTMLInputElement).value);
+      });
+
+      // Update URL
+      const newUrl =
+        url.pathname + (params.toString() ? "?" + params.toString() : "");
+      window.location.href = newUrl;
+    }
+  });
+</script>

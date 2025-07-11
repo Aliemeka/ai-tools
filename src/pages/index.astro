@@ -1,61 +1,114 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import ToolGrid from '../components/ToolGrid.astro';
-import SearchBar from '../components/SearchBar.astro';
-import CategoryFilter from '../components/CategoryFilter.astro';
-import { getCollection } from 'astro:content';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ToolGrid from "../components/ToolGrid.astro";
+import SearchBar from "../components/SearchBar.astro";
+import CategoryFilter from "../components/CategoryFilter.astro";
+import { getCollection } from "astro:content";
 
-const tools = await getCollection('tools');
+const tools = await getCollection("tools");
 const categories = [
-  { name: 'Chat Tools', slug: 'chat', count: tools.filter(t => t.data.category === 'chat').length },
-  { name: 'Code Assistants', slug: 'code-assistant', count: tools.filter(t => t.data.category === 'code-assistant').length },
-  { name: 'Image Generation', slug: 'image-generation', count: tools.filter(t => t.data.category === 'image-generation').length },
-  { name: 'Agent Builders', slug: 'agent-builder', count: tools.filter(t => t.data.category === 'agent-builder').length },
-  { name: 'Writing Tools', slug: 'writing', count: tools.filter(t => t.data.category === 'writing').length },
-  { name: 'Voice & Audio', slug: 'voice', count: tools.filter(t => t.data.category === 'voice').length },
-  { name: 'Video Tools', slug: 'video', count: tools.filter(t => t.data.category === 'video').length },
-  { name: 'Analytics', slug: 'analytics', count: tools.filter(t => t.data.category === 'analytics').length },
-].filter(cat => cat.count > 0);
+  {
+    name: "Chat Tools",
+    slug: "chat",
+    count: tools.filter((t) => t.data.category === "chat").length,
+  },
+  {
+    name: "Code Assistants",
+    slug: "code-assistant",
+    count: tools.filter((t) => t.data.category === "code-assistant").length,
+  },
+  {
+    name: "Image Generation",
+    slug: "image-generation",
+    count: tools.filter((t) => t.data.category === "image-generation").length,
+  },
+  {
+    name: "Agent Builders",
+    slug: "agent-builder",
+    count: tools.filter((t) => t.data.category === "agent-builder").length,
+  },
+  {
+    name: "Writing Tools",
+    slug: "writing",
+    count: tools.filter((t) => t.data.category === "writing").length,
+  },
+  {
+    name: "Voice & Audio",
+    slug: "voice",
+    count: tools.filter((t) => t.data.category === "voice").length,
+  },
+  {
+    name: "Video Tools",
+    slug: "video",
+    count: tools.filter((t) => t.data.category === "video").length,
+  },
+  {
+    name: "Analytics",
+    slug: "analytics",
+    count: tools.filter((t) => t.data.category === "analytics").length,
+  },
+  {
+    name: "Development",
+    slug: "development",
+    count: tools.filter((t) => t.data.category === "development").length,
+  },
+].filter((cat) => cat.count > 0);
 
 const featuredTools = tools.slice(0, 6);
 ---
 
-<BaseLayout title="AI Tools Directory - Discover the Best AI Tools for Professionals">
-  <div class="bg-gradient-to-br from-fuchsia-50 to-pink-100 py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-5xl font-bold text-slate-900 sm:text-6xl md:text-7xl mb-6">
-        Discover the Best <span class="text-fuchsia-600">AI Tools</span>
+<BaseLayout
+  title='AI Tools Directory - Discover the Best AI Tools for Professionals'
+>
+  <div class='bg-gradient-to-br from-fuchsia-50 to-pink-100 py-20'>
+    <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
+      <h1
+        class='text-5xl font-bold text-slate-900 sm:text-6xl md:text-7xl mb-6'
+      >
+        Discover the Best <span class='text-fuchsia-600'>AI Tools</span>
       </h1>
-      <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-10">
-        A comprehensive directory of AI tools for professionals. Find the perfect AI solution for your workflow.
+      <p class='text-xl text-slate-600 max-w-3xl mx-auto mb-10'>
+        A comprehensive directory of AI tools for professionals. Find the
+        perfect AI solution for your workflow.
       </p>
-      <div class="max-w-2xl mx-auto">
-        <SearchBar placeholder="Search over 10+ AI tools..." />
+      <div class='max-w-2xl mx-auto'>
+        <SearchBar placeholder='Search over 10+ AI tools...' />
       </div>
     </div>
   </div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
-      <div class="lg:col-span-1">
+  <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16'>
+    <div class='grid grid-cols-1 lg:grid-cols-4 gap-10'>
+      <div class='lg:col-span-1'>
         <CategoryFilter categories={categories} />
       </div>
-      
-      <div class="lg:col-span-3">
-        <div class="mb-10">
-          <h2 class="text-3xl font-bold text-slate-900 mb-3">Featured Tools</h2>
-          <p class="text-slate-600 text-lg">Popular AI tools used by professionals worldwide</p>
+
+      <div class='lg:col-span-3'>
+        <div class='mb-10'>
+          <h2 class='text-3xl font-bold text-slate-900 mb-3'>Featured Tools</h2>
+          <p class='text-slate-600 text-lg'>
+            Popular AI tools used by professionals worldwide
+          </p>
         </div>
         <ToolGrid tools={featuredTools} />
-        
-        <div class="mt-16 text-center">
+
+        <div class='mt-16 text-center'>
           <a
-            href="/tools"
-            class="inline-flex items-center px-8 py-4 bg-fuchsia-600 text-white font-semibold rounded-xl hover:bg-fuchsia-700 transition-colors shadow-lg hover:shadow-xl"
+            href='/tools'
+            class='inline-flex items-center px-8 py-4 bg-fuchsia-600 text-white font-semibold rounded-xl hover:bg-fuchsia-700 transition-colors shadow-lg hover:shadow-xl'
           >
             View All Tools
-            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            <svg
+              class='ml-2 w-5 h-5'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
+            >
+              <path
+                stroke-linecap='round'
+                stroke-linejoin='round'
+                stroke-width='2'
+                d='M9 5l7 7-7 7'></path>
             </svg>
           </a>
         </div>
@@ -63,25 +116,31 @@ const featuredTools = tools.slice(0, 6);
     </div>
   </div>
 
-  <div class="bg-slate-50 py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-4">Browse by Category</h2>
-        <p class="text-xl text-slate-600">Find tools by their primary use case</p>
+  <div class='bg-slate-50 py-20'>
+    <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+      <div class='text-center mb-16'>
+        <h2 class='text-4xl font-bold text-slate-900 mb-4'>
+          Browse by Category
+        </h2>
+        <p class='text-xl text-slate-600'>
+          Find tools by their primary use case
+        </p>
       </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {categories.map(category => (
-          <a
-            href={`/category/${category.slug}`}
-            class="bg-white rounded-xl shadow-sm border border-slate-200 p-8 hover:shadow-lg hover:border-fuchsia-200 transition-all duration-300 group"
-          >
-            <h3 class="text-xl font-semibold text-slate-900 group-hover:text-fuchsia-600 transition-colors mb-2">
-              {category.name}
-            </h3>
-            <p class="text-slate-600 font-medium">{category.count} tools</p>
-          </a>
-        ))}
+
+      <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
+        {
+          categories.map((category) => (
+            <a
+              href={`/category/${category.slug}`}
+              class='bg-white rounded-xl shadow-sm border border-slate-200 p-8 hover:shadow-lg hover:border-fuchsia-200 transition-all duration-300 group'
+            >
+              <h3 class='text-xl font-semibold text-slate-900 group-hover:text-fuchsia-600 transition-colors mb-2'>
+                {category.name}
+              </h3>
+              <p class='text-slate-600 font-medium'>{category.count} tools</p>
+            </a>
+          ))
+        }
       </div>
     </div>
   </div>
