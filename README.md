@@ -68,7 +68,7 @@ Visit the live site at: [aiworktools.vercel.app](https://aiworktools.vercel.app)
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/yourusername/ai-tools-directory.git
+   git clone https://github.com/Aliemeka/ai-tools.git
    cd ai-tools-directory
    ```
 
