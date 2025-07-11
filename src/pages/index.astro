@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ToolGrid from "../components/ToolGrid.astro";
 import SearchBar from "../components/SearchBar.astro";
-import CategoryFilter from "../components/CategoryFilter.astro";
+import FilterSidebar from "../components/FilterSidebar.astro";
 import { getCollection } from "astro:content";
 
 const tools = await getCollection("tools");
@@ -79,8 +79,11 @@ const featuredTools = tools.slice(0, 6);
 
   <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16'>
     <div class='grid grid-cols-1 lg:grid-cols-4 gap-10'>
-      <div class='lg:col-span-1 hidden lg:block lg:sticky lg:top-6 lg:self-start'>
-        <CategoryFilter categories={categories} />
+      <div class='lg:col-span-1 hidden lg:block'>
+        <FilterSidebar
+          categories={categories}
+          showMobileToggle={false}
+        />
       </div>
 
       <div class='lg:col-span-3 col-span-1'>

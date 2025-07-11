@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ToolGrid from "../components/ToolGrid.astro";
 import SearchBar from "../components/SearchBar.astro";
-import CategoryFilter from "../components/CategoryFilter.astro";
+import FilterSidebar from "../components/FilterSidebar.astro";
 import { getCollection } from "astro:content";
 
 const allTools = await getCollection("tools");
@@ -82,47 +82,13 @@ const categories = [
   </div>
 
   <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
-    <!-- Mobile Filter Toggle Button -->
-    <div class='lg:hidden mb-6'>
-      <button
-        id='mobile-filter-toggle'
-        class='flex items-center justify-center w-full px-4 py-3 bg-white border border-slate-300 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 transition-colors'
-      >
-        <svg class='w-5 h-5 mr-2' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-          <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z'></path>
-        </svg>
-        Filters & Categories
-        <svg id='toggle-icon' class='w-4 h-4 ml-2 transition-transform' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-          <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'></path>
-        </svg>
-      </button>
-    </div>
-
     <div class='grid grid-cols-1 lg:grid-cols-4 gap-10'>
-      <!-- Mobile Overlay -->
-      <div id='mobile-filter-overlay' class='fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden hidden'></div>
-      
-      <!-- Sidebar -->
-      <div id='filter-sidebar' class='lg:col-span-1 fixed lg:sticky lg:top-6 inset-y-0 left-0 z-50 w-80 lg:w-auto h-full lg:h-fit bg-white lg:bg-transparent transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out lg:transition-none overflow-y-auto lg:overflow-visible shadow-xl lg:shadow-none lg:self-start'>
-        <!-- Mobile Close Button -->
-        <div class='lg:hidden flex justify-between items-center p-4 border-b border-slate-200'>
-          <h3 class='text-lg font-semibold text-slate-900'>Filters & Categories</h3>
-          <button id='mobile-filter-close' class='p-2 text-slate-400 hover:text-slate-600'>
-            <svg class='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-              <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 18L18 6M6 6l12 12'></path>
-            </svg>
-          </button>
-        </div>
-        
-        <!-- Filter Content -->
-        <div class='p-4 lg:p-0'>
-          <CategoryFilter
-            categories={categories}
-            pricingFilters={pricingFilters}
-            sourceFilters={sourceFilters}
-          />
-        </div>
-      </div>
+      <FilterSidebar
+        categories={categories}
+        pricingFilters={pricingFilters}
+        sourceFilters={sourceFilters}
+        toggleButtonText="Filters & Categories"
+      />
 
       <div class='lg:col-span-3'>
         <div class='flex justify-between items-center mb-8'>
@@ -174,48 +140,6 @@ const categories = [
       });
     }
 
-    // Mobile filter toggle functionality
-    const mobileToggle = document.getElementById('mobile-filter-toggle');
-    const filterSidebar = document.getElementById('filter-sidebar');
-    const mobileOverlay = document.getElementById('mobile-filter-overlay');
-    const mobileClose = document.getElementById('mobile-filter-close');
-    const toggleIcon = document.getElementById('toggle-icon');
-
-    function openMobileFilter() {
-      if (filterSidebar && mobileOverlay && toggleIcon) {
-        filterSidebar.classList.remove('-translate-x-full');
-        mobileOverlay.classList.remove('hidden');
-        toggleIcon.style.transform = 'rotate(180deg)';
-        document.body.style.overflow = 'hidden';
-      }
-    }
-
-    function closeMobileFilter() {
-      if (filterSidebar && mobileOverlay && toggleIcon) {
-        filterSidebar.classList.add('-translate-x-full');
-        mobileOverlay.classList.add('hidden');
-        toggleIcon.style.transform = 'rotate(0deg)';
-        document.body.style.overflow = '';
-      }
-    }
-
-    // Event listeners
-    mobileToggle?.addEventListener('click', openMobileFilter);
-    mobileClose?.addEventListener('click', closeMobileFilter);
-    mobileOverlay?.addEventListener('click', closeMobileFilter);
-
-    // Close on escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeMobileFilter();
-      }
-    });
-
-    // Handle window resize
-    window.addEventListener('resize', () => {
-      if (window.innerWidth >= 1024) { // lg breakpoint
-        closeMobileFilter();
-      }
-    });
+    // Sort functionality is handled in FilterSidebar component
   });
 </script>
