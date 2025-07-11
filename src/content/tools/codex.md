@@ -6,7 +6,7 @@ subcategory: "code-generation"
 pricing: "paid"
 source: "closed-source"
 website: "https://openai.com/codex"
-logo: "/images/tools/codex.svg"
+logo: "/images/tools/chatgpt.svg"
 tags: ["coding", "openai", "code-generation", "programming", "github-copilot"]
 features:
   - "Natural language to code translation"

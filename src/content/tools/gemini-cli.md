@@ -1,13 +1,22 @@
 ---
 title: "Gemini CLI"
 description: "Command-line interface for Google's Gemini AI models"
-category: "development"
+category: "code-assistant"
 subcategory: "cli-tools"
 pricing: "free"
 source: "open-source"
 website: "https://github.com/google/generative-ai-cli"
-logo: "/images/tools/gemini-cli.svg"
-tags: ["cli", "command-line", "gemini", "google", "multimodal", "development", "automation"]
+logo: "/images/tools/gemini.svg"
+tags:
+  [
+    "cli",
+    "command-line",
+    "gemini",
+    "google",
+    "multimodal",
+    "development",
+    "automation",
+  ]
 features:
   - "Command-line access to Gemini models"
   - "Text generation and chat functionality"
@@ -19,7 +28,8 @@ pricing_details:
   paid: "Pay-per-use API pricing"
 api_available: true
 mobile_app: false
-integrations: ["Google AI Studio", "Vertex AI", "Shell scripts", "CI/CD pipelines"]
+integrations:
+  ["Google AI Studio", "Vertex AI", "Shell scripts", "CI/CD pipelines"]
 last_updated: "2025-07-10"
 rating: 4.2
 user_count: "10K+"

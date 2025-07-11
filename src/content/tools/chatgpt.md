@@ -5,7 +5,7 @@ category: "chat"
 subcategory: "conversational-ai"
 pricing: "freemium"
 source: "closed-source"
-website: "https://chat.openai.com"
+website: "https://chatgpt.com/"
 logo: "/images/tools/chatgpt.svg"
 tags: ["conversation", "writing", "coding", "analysis", "creative"]
 features:

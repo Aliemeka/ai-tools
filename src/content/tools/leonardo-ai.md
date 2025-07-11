@@ -6,7 +6,7 @@ subcategory: "ai-art"
 pricing: "freemium"
 source: "closed-source"
 website: "https://leonardo.ai"
-logo: "/images/tools/leonardo.svg"
+logo: "/images/tools/leonardo-ai.svg"
 tags: ["image-generation", "ai-art", "game-assets", "marketing", "creative"]
 features:
   - "High-quality image generation"

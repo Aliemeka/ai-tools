@@ -6,7 +6,7 @@ subcategory: "cli-tools"
 pricing: "paid"
 source: "closed-source"
 website: "https://claude.ai/code"
-logo: "/images/tools/claude-code.svg"
+logo: "/images/tools/claude.svg"
 tags: ["cli", "coding", "anthropic", "terminal", "development", "automation"]
 features:
   - "Command-line interface for Claude AI"

@@ -6,7 +6,7 @@ subcategory: "video-generation"
 pricing: "paid"
 source: "closed-source"
 website: "https://openai.com/sora"
-logo: "/images/tools/sora.svg"
+logo: "/images/tools/chatgpt.svg"
 tags: ["video-generation", "openai", "text-to-video", "ai-video", "creative"]
 features:
   - "Text-to-video generation"

@@ -6,7 +6,7 @@ subcategory: "video-generation"
 pricing: "paid"
 source: "closed-source"
 website: "https://deepmind.google/technologies/veo"
-logo: "/images/tools/veo.svg"
+logo: "/images/tools/deepmind.svg"
 tags: ["video-generation", "google", "deepmind", "text-to-video", "ai-video"]
 features:
   - "High-quality video generation"

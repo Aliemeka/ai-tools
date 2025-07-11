@@ -6,8 +6,15 @@ subcategory: "text-to-speech"
 pricing: "paid"
 source: "closed-source"
 website: "https://spitch.app"
-logo: "/images/tools/spitch.svg"
-tags: ["voice", "african-languages", "multilingual", "speech-to-text", "conversational-ai"]
+logo: "/images/tools/spitch.jpg"
+tags:
+  [
+    "voice",
+    "african-languages",
+    "multilingual",
+    "speech-to-text",
+    "conversational-ai",
+  ]
 features:
   - "African language voice synthesis"
   - "Speech-to-text and text-to-speech"
