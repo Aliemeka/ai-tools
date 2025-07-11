@@ -69,30 +69,63 @@ const categoryName =
 ---
 
 <BaseLayout title={`${categoryName} - AI Tools Directory`}>
-  <div class='bg-gray-50 py-8'>
+  <div class='bg-slate-50 py-12'>
     <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-      <div class='text-center mb-8'>
-        <h1 class='text-3xl font-bold text-gray-900'>{categoryName}</h1>
-        <p class='mt-2 text-gray-600'>
+      <div class='text-center mb-12'>
+        <h1 class='text-4xl lg:text-6xl font-bold text-slate-900 mb-4'>{categoryName}</h1>
+        <p class='text-xl text-slate-600'>
           Browse {tools.length} tools in the {categoryName.toLowerCase()} category
         </p>
       </div>
 
-      <div class='max-w-2xl mx-auto mb-8'>
+      <div class='max-w-2xl mx-auto mb-12'>
         <SearchBar placeholder={`Search ${categoryName.toLowerCase()}...`} />
       </div>
     </div>
   </div>
 
-  <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
-    <div class='grid grid-cols-1 lg:grid-cols-4 gap-8'>
-      <div class='lg:col-span-1'>
-        <CategoryFilter categories={categories} activeCategory={category} />
+  <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
+    <!-- Mobile Filter Toggle Button -->
+    <div class='lg:hidden mb-6'>
+      <button
+        id='mobile-filter-toggle'
+        class='flex items-center justify-center w-full px-4 py-3 bg-white border border-slate-300 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 transition-colors'
+      >
+        <svg class='w-5 h-5 mr-2' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+          <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z'></path>
+        </svg>
+        Categories
+        <svg id='toggle-icon' class='w-4 h-4 ml-2 transition-transform' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+          <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class='grid grid-cols-1 lg:grid-cols-4 gap-10'>
+      <!-- Mobile Overlay -->
+      <div id='mobile-filter-overlay' class='fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden hidden'></div>
+      
+      <!-- Sidebar -->
+      <div id='filter-sidebar' class='lg:col-span-1 fixed lg:relative inset-y-0 left-0 z-50 w-80 lg:w-auto bg-white lg:bg-transparent transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out lg:transition-none overflow-y-auto lg:overflow-visible shadow-xl lg:shadow-none'>
+        <!-- Mobile Close Button -->
+        <div class='lg:hidden flex justify-between items-center p-4 border-b border-slate-200'>
+          <h3 class='text-lg font-semibold text-slate-900'>Categories</h3>
+          <button id='mobile-filter-close' class='p-2 text-slate-400 hover:text-slate-600'>
+            <svg class='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+              <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 18L18 6M6 6l12 12'></path>
+            </svg>
+          </button>
+        </div>
+        
+        <!-- Filter Content -->
+        <div class='p-4 lg:p-0'>
+          <CategoryFilter categories={categories} activeCategory={category} />
+        </div>
       </div>
 
       <div class='lg:col-span-3'>
-        <div class='flex justify-between items-center mb-6'>
-          <p class='text-gray-600'>Showing {tools.length} tools</p>
+        <div class='flex justify-between items-center mb-8'>
+          <p class='text-slate-600 font-medium'>Showing {tools.length} tools</p>
           <select
             id='sort-select'
             class='border border-slate-300 rounded-lg px-4 py-2.5 text-sm bg-white shadow-sm hover:border-fuchsia-300 focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-200 transition-colors'
@@ -114,6 +147,7 @@ const categoryName =
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
+    // Sort functionality
     const sortSelect = document.getElementById(
       "sort-select"
     ) as HTMLSelectElement;
@@ -135,5 +169,49 @@ const categoryName =
         window.location.href = newUrl;
       });
     }
+
+    // Mobile filter toggle functionality
+    const mobileToggle = document.getElementById('mobile-filter-toggle');
+    const filterSidebar = document.getElementById('filter-sidebar');
+    const mobileOverlay = document.getElementById('mobile-filter-overlay');
+    const mobileClose = document.getElementById('mobile-filter-close');
+    const toggleIcon = document.getElementById('toggle-icon');
+
+    function openMobileFilter() {
+      if (filterSidebar && mobileOverlay && toggleIcon) {
+        filterSidebar.classList.remove('-translate-x-full');
+        mobileOverlay.classList.remove('hidden');
+        toggleIcon.style.transform = 'rotate(180deg)';
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeMobileFilter() {
+      if (filterSidebar && mobileOverlay && toggleIcon) {
+        filterSidebar.classList.add('-translate-x-full');
+        mobileOverlay.classList.add('hidden');
+        toggleIcon.style.transform = 'rotate(0deg)';
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Event listeners
+    mobileToggle?.addEventListener('click', openMobileFilter);
+    mobileClose?.addEventListener('click', closeMobileFilter);
+    mobileOverlay?.addEventListener('click', closeMobileFilter);
+
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMobileFilter();
+      }
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 1024) { // lg breakpoint
+        closeMobileFilter();
+      }
+    });
   });
 </script>

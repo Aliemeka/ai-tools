@@ -63,15 +63,15 @@ const featuredTools = tools.slice(0, 6);
   <div class='bg-gradient-to-br from-fuchsia-50 to-pink-100 py-20'>
     <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
       <h1
-        class='text-5xl font-bold text-slate-900 sm:text-6xl md:text-7xl mb-6'
+        class='text-4xl font-bold text-slate-900 sm:text-5xl md:text-6xl lg:text-7xl mb-6'
       >
         Discover the Best <span class='text-fuchsia-600'>AI Tools</span>
       </h1>
-      <p class='text-xl text-slate-600 max-w-3xl mx-auto mb-10'>
+      <p class='text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto mb-10'>
         A comprehensive directory of AI tools for professionals. Find the
         perfect AI solution for your workflow.
       </p>
-      <div class='max-w-2xl mx-auto'>
+      <div class='max-w-2xl mx-auto w-full'>
         <SearchBar placeholder='Search over 10+ AI tools...' />
       </div>
     </div>
@@ -79,11 +79,11 @@ const featuredTools = tools.slice(0, 6);
 
   <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16'>
     <div class='grid grid-cols-1 lg:grid-cols-4 gap-10'>
-      <div class='lg:col-span-1'>
+      <div class='lg:col-span-1 hidden lg:block'>
         <CategoryFilter categories={categories} />
       </div>
 
-      <div class='lg:col-span-3'>
+      <div class='lg:col-span-3 col-span-1'>
         <div class='mb-10'>
           <h2 class='text-3xl font-bold text-slate-900 mb-3'>Featured Tools</h2>
           <p class='text-slate-600 text-lg'>
