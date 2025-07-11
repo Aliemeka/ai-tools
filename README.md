@@ -17,7 +17,7 @@ A comprehensive, open-source directory of AI tools for professionals. Built with
 
 ## 🚀 Live Demo
 
-Visit the live site at: [aitools.vercel.app](https://aitools.vercel.app)
+Visit the live site at: [aiworktools.vercel.app](https://aiworktools.vercel.app)
 
 ## 🛠️ Tech Stack
 
@@ -60,23 +60,26 @@ Visit the live site at: [aitools.vercel.app](https://aitools.vercel.app)
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - pnpm (recommended) or npm
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/yourusername/ai-tools-directory.git
    cd ai-tools-directory
    ```
 
 2. **Install dependencies**
+
    ```bash
    pnpm install
    ```
 
 3. **Start the development server**
+
    ```bash
    pnpm dev
    ```
@@ -88,23 +91,25 @@ Visit the live site at: [aitools.vercel.app](https://aitools.vercel.app)
 
 ## 🧞 Commands
 
-| Command           | Action                                       |
-| :---------------- | :------------------------------------------- |
-| `pnpm install`    | Install dependencies                         |
-| `pnpm dev`        | Start local dev server at `localhost:3000`  |
-| `pnpm build`      | Build production site to `./dist/`          |
-| `pnpm preview`    | Preview your build locally                   |
+| Command        | Action                                     |
+| :------------- | :----------------------------------------- |
+| `pnpm install` | Install dependencies                       |
+| `pnpm dev`     | Start local dev server at `localhost:3000` |
+| `pnpm build`   | Build production site to `./dist/`         |
+| `pnpm preview` | Preview your build locally                 |
 
 ## ➕ Adding New Tools
 
 To add a new AI tool to the directory:
 
 1. **Create a new Markdown file** in `src/content/tools/`
+
    ```bash
    touch src/content/tools/your-tool-name.md
    ```
 
 2. **Add the frontmatter and content**
+
    ```markdown
    ---
    title: "Your Tool Name"
@@ -131,15 +136,19 @@ To add a new AI tool to the directory:
    ---
 
    ## Overview
+
    Detailed description of the tool...
 
    ## Key Features
+
    - Feature descriptions...
 
    ## Use Cases
+
    - Use case examples...
 
    ## Pricing
+
    - Pricing information...
    ```
 
@@ -151,7 +160,7 @@ To add a new AI tool to the directory:
 
 - **Primary Color**: Fuchsia (`#c026d3`)
 - **Text Colors**: Slate scale (`slate-900`, `slate-600`, etc.)
-- **Fonts**: 
+- **Fonts**:
   - Headings: Instrument Serif
   - Body: Outfit
 - **Spacing**: Tailwind's spacing scale
