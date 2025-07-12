@@ -21,7 +21,7 @@ api_available: false
 mobile_app: true
 integrations: ["X (Twitter)", "X Premium"]
 last_updated: "2025-07-10"
-rating: 4.1
+rating: 4.3
 user_count: "1M+"
 ---
 

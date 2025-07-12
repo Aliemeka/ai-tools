@@ -1,7 +1,7 @@
 ---
 title: "Replit"
 description: "Cloud-based IDE with AI-powered coding assistance and collaboration"
-category: "development"
+category: "code-assistant"
 subcategory: "cloud-ide"
 pricing: "freemium"
 source: "closed-source"

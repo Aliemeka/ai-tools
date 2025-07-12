@@ -1,7 +1,7 @@
 ---
 title: "Lovable"
 description: "AI-powered platform for building full-stack web applications"
-category: "development"
+category: "code-assistant"
 subcategory: "web-development"
 pricing: "freemium"
 source: "closed-source"

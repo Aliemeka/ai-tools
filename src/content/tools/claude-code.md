@@ -21,7 +21,7 @@ api_available: true
 mobile_app: false
 integrations: ["VS Code", "Git", "Terminal", "CI/CD pipelines"]
 last_updated: "2025-07-10"
-rating: 4.6
+rating: 4.7
 user_count: "100K+"
 ---
 

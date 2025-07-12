@@ -21,7 +21,7 @@ api_available: false
 mobile_app: false
 integrations: ["Google AI Studio", "Vertex AI"]
 last_updated: "2025-07-10"
-rating: 4.4
+rating: 4.6
 user_count: "Limited access"
 ---
 

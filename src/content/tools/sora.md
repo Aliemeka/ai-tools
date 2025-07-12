@@ -21,7 +21,7 @@ api_available: false
 mobile_app: false
 integrations: ["OpenAI Platform"]
 last_updated: "2025-07-10"
-rating: 4.6
+rating: 4.3
 user_count: "Limited access"
 ---
 

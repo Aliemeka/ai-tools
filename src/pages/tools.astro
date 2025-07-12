@@ -58,6 +58,11 @@ const categories = [
     slug: "analytics",
     count: tools.filter((t) => t.data.category === "analytics").length,
   },
+  {
+    name: "Development",
+    slug: "development",
+    count: tools.filter((t) => t.data.category === "development").length,
+  },
 ].filter((cat) => cat.count > 0);
 ---
 
@@ -87,7 +92,7 @@ const categories = [
         categories={categories}
         pricingFilters={pricingFilters}
         sourceFilters={sourceFilters}
-        toggleButtonText="Filters & Categories"
+        toggleButtonText='Filters & Categories'
       />
 
       <div class='lg:col-span-3'>
